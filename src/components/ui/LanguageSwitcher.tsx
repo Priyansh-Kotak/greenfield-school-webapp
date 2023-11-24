@@ -13,7 +13,7 @@ import type { Locale } from "@/src/locales";
 import useResponsiveScreen from "@hooks/useResponsiveScreen";
 import type { FC } from "react";
 import { useTransition } from "react";
-import Lottie from "./Lottie";
+import { IoLanguage } from "react-icons/io5";
 
 const locales = [
   { localeCode: "en", localeName: "English" },
@@ -51,25 +51,13 @@ const LanguageSwitcher: FC = () => {
             size="sm"
             isIconOnly
           >
-            <Lottie
-              src="https://lottie.host/1afca697-eafa-49ec-acd4-799d4e67bb66/qGhFOY2OJm.json"
-              className="w-9"
-              autoplay
-              loop
-            />
+            <IoLanguage className="h-4 w-4" />
           </Button>
         ) : (
           <Button
             color="primary"
             variant="bordered"
-            startContent={
-              <Lottie
-                src="https://lottie.host/1afca697-eafa-49ec-acd4-799d4e67bb66/qGhFOY2OJm.json"
-                className="w-11"
-                autoplay
-                loop
-              />
-            }
+            startContent={<IoLanguage className="h-5 w-5" />}
             isDisabled={isPending}
             className="font-semibold"
           >
