@@ -10,7 +10,7 @@ import GreenfieldLogo from "@/public/images/logo.png";
 import LanguageSwitcher from "@/src/components/ui/LanguageSwitcher";
 import Image from "next/image";
 import type { FC } from "react";
-import AccountMenu from "../../(main-public)/_components/Navbar/MainNavbar/AccountMenu";
+import AccountMenu from "../../(marketing)/_components/Navbar/MainNavbar/AccountMenu";
 import NotificationButton from "./NotificationButton";
 
 const Navbar: FC = () => {

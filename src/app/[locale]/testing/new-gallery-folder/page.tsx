@@ -1,7 +1,7 @@
 "use client";
 
 import type { FC } from "react";
-import SinglePageTabs from "../../(main-public)/_components/SinglePageTabs";
+import SinglePageTabs from "../../(marketing)/_components/SinglePageTabs";
 import WithThumbnail from "./_components/WithThumbnail";
 import WithoutThumbnail from "./_components/WithoutThumbnail";
 

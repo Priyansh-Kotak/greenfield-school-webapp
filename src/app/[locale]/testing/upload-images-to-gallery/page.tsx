@@ -1,6 +1,6 @@
 import { db } from "@/src/server/db";
 import type { FC } from "react";
-import SinglePageTabs from "../../(main-public)/_components/SinglePageTabs";
+import SinglePageTabs from "../../(marketing)/_components/SinglePageTabs";
 import MultipleImages from "./_components/MultipleImages";
 import SingleImage from "./_components/SingleImage";
 import UploadFolder from "./_components/UploadFolder";
