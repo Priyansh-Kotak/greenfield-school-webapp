@@ -14,7 +14,7 @@ const ParentDashboardLayout: FC<Props> = async ({ children }) => {
   return (
     <>
       <ParentDrawer />
-      {children}
+      <main className="mx-8 mt-4">{children}</main>
     </>
   );
 };

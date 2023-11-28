@@ -13,7 +13,7 @@ const AdminDashboardLayout: FC<LayoutProps> = async ({ children }) => {
   return (
     <>
       <AdminDrawer />
-      {children}
+      <main className="mx-8 mt-4">{children}</main>
     </>
   );
 };
