@@ -1,8 +1,8 @@
-import { RedirectType, redirect } from "next/navigation";
 import type { FC, ReactNode } from "react";
+import { RedirectType, redirect } from "next/navigation";
 
-import { getServerAuthSession } from "@/src/server/auth";
 import StudentDrawer from "./_components/StudentDrawer";
+import { getServerAuthSession } from "@/src/server/auth";
 
 type Props = { children: ReactNode };
 
@@ -14,7 +14,7 @@ const StudentDashboardLayout: FC<Props> = async ({ children }) => {
   return (
     <>
       <StudentDrawer />
-      {children}
+      <main className="mx-8 mt-4">{children}</main>
     </>
   );
 };

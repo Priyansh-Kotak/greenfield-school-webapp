@@ -2,11 +2,12 @@
 
 import { Accordion, AccordionItem, Listbox, ListboxItem } from "@lib/next-ui";
 
-import NextLink from "next/link";
+import type { DrawerProps } from ".";
 import type { FC } from "react";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+import NextLink from "next/link";
+import { cloneElement } from "react";
 import { twMerge } from "tailwind-merge";
-import type { DrawerProps } from ".";
 import useSelectedDrawerItem from "./useSelectedOption";
 
 const DesktopDrawer: FC<DrawerProps> = ({ items }) => {
@@ -31,7 +32,9 @@ const DesktopDrawer: FC<DrawerProps> = ({ items }) => {
                 title: "font-semibold text-base",
                 base: "px-[1rem] py-2 data-[hover=true]:bg-primary data-[hover=true]:text-primary-foreground data-[selectable=true]:focus:bg-primary data-[selectable=true]:focus:text-primary-foreground data-[selected=true]:bg-primary data-[selected=true]:text-primary-foreground",
               }}
-              startContent={item.icon}
+              startContent={cloneElement(item.icon, {
+                className: "h-[1.265rem] w-[1.265rem]",
+              })}
               as={NextLink}
               href={"href" in item ? item.href : "/"}
               hideSelectedIcon
@@ -65,10 +68,12 @@ const DesktopDrawer: FC<DrawerProps> = ({ items }) => {
                 trigger: "py-2",
                 content: "bg-secondary text-amber-950 rounded-md mt-1",
               }}
-              startContent={item.icon}
+              startContent={cloneElement(item.icon, {
+                className: "h-[1.265rem] w-[1.265rem]",
+              })}
               indicator={<MdOutlineKeyboardArrowDown className="h-6 w-6" />}
             >
-              {"subItems" in item ? (
+              {item.subItems ? (
                 <Listbox
                   selectionMode="single"
                   selectedKeys={
@@ -78,7 +83,9 @@ const DesktopDrawer: FC<DrawerProps> = ({ items }) => {
                   {item.subItems.map(subItem => (
                     <ListboxItem
                       key={subItem.title}
-                      startContent={subItem.icon}
+                      startContent={cloneElement(subItem.icon, {
+                        className: "h-[1.265rem] w-[1.265rem]",
+                      })}
                       classNames={{
                         title: "font-semibold",
                         base: "data-[hover=true]:bg-secondary-800 data-[hover=true]:text-secondary-foreground/90 data-[selectable=true]:focus:bg-secondary-800 data-[selectable=true]:focus:text-secondary-foreground/90 data-[selected=true]:bg-secondary-800 data-[selected=true]:text-secondary-foreground/90",

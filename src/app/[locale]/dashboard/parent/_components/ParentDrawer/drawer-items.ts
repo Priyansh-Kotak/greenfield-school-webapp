@@ -1,5 +1,3 @@
-"use client";
-
 import { BiHome, BiUserCircle } from "react-icons/bi";
 import { LiaChalkboardTeacherSolid, LiaMoneyBillSolid } from "react-icons/lia";
 import { PiExamLight, PiStudentBold, PiUserListBold } from "react-icons/pi";
@@ -7,9 +5,6 @@ import { TbLamp2, TbReportAnalytics } from "react-icons/tb";
 
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { BsCalendar2Check } from "react-icons/bs";
-import Drawer from "@/src/components/Drawer";
-import type { DrawerItem } from "@/src/components/Drawer";
-import type { FC } from "react";
 import { FaUserClock } from "react-icons/fa";
 import { FiFolder } from "react-icons/fi";
 import { GiTakeMyMoney } from "react-icons/gi";
@@ -17,113 +12,110 @@ import { GoNumber } from "react-icons/go";
 import { GrMoney } from "react-icons/gr";
 import { MdWorkOutline } from "react-icons/md";
 import { RiSettings2Line } from "react-icons/ri";
+import { createElement } from "react";
 
-const drawerItems: DrawerItem[] = [
+export default [
   {
     title: "Home",
     href: "/dashboard/parent",
-    icon: <BiHome className="h-[1.265rem] w-[1.265rem]" />,
+    icon: createElement(BiHome),
   },
   {
     title: "Admission Dashboard",
     href: "/dashboard/admission",
-    icon: <PiStudentBold className="h-[1.265rem] w-[1.265rem]" />,
+    icon: createElement(PiStudentBold),
   },
   {
     title: "Academics",
-    icon: <TbLamp2 className="h-[1.265rem] w-[1.265rem]" />,
+    icon: createElement(TbLamp2),
+    href: "/dashboard/parent/academics",
     subItems: [
       {
         title: "Attendance",
-        icon: <FaUserClock className="h-[1.265rem] w-[1.265rem]" />,
+        icon: createElement(FaUserClock),
         href: "/dashboard/parent/academics/attendance",
       },
       {
         title: "Timetable",
-        icon: <AiOutlineClockCircle className="h-[1.265rem] w-[1.265rem]" />,
+        icon: createElement(AiOutlineClockCircle),
         href: "/dashboard/parent/academics/timetable",
       },
       {
         title: "Class Material",
-        icon: <FiFolder className="h-[1.265rem] w-[1.265rem]" />,
+        icon: createElement(FiFolder),
         href: "/dashboard/parent/academics/class-material",
       },
       {
         title: "Academic Calendar",
-        icon: <BsCalendar2Check className="h-[1.265rem] w-[1.265rem]" />,
+        icon: createElement(BsCalendar2Check),
         href: "/dashboard/parent/academics/academic-calendar",
       },
       {
         title: "Home Work",
-        icon: <MdWorkOutline className="h-[1.265rem] w-[1.265rem]" />,
+        icon: createElement(MdWorkOutline),
         href: "/dashboard/parent/academics/homework",
       },
       {
         title: "Teacher Info",
-        icon: (
-          <LiaChalkboardTeacherSolid className="h-[1.265rem] w-[1.265rem]" />
-        ),
+        icon: createElement(LiaChalkboardTeacherSolid),
         href: "/dashboard/parent/academics/teacher-info",
       },
     ],
   },
   {
     title: "Exams",
-    icon: <PiExamLight className="h-[1.265rem] w-[1.265rem]" />,
+    icon: createElement(PiExamLight),
+    href: "/dashboard/parent/exams",
     subItems: [
       {
         title: "Schedule",
-        icon: <AiOutlineClockCircle className="h-[1.265rem] w-[1.265rem]" />,
+        icon: createElement(AiOutlineClockCircle),
         href: "/dashboard/parent/exams/schedule",
       },
       {
         title: "Marks",
-        icon: <GoNumber className="h-[1.265rem] w-[1.265rem]" />,
+        icon: createElement(GoNumber),
         href: "/dashboard/parent/exams/marks",
       },
       {
         title: "Report Card",
-        icon: <TbReportAnalytics className="h-[1.265rem] w-[1.265rem]" />,
+        icon: createElement(TbReportAnalytics),
         href: "/dashboard/parent/exams/report-card",
       },
     ],
   },
   {
     title: "Money",
-    icon: <LiaMoneyBillSolid className="h-[1.265rem] w-[1.265rem]" />,
+    icon: createElement(LiaMoneyBillSolid),
+    href: "/dashboard/parent/money",
     subItems: [
       {
         title: "Fees",
-        icon: <GiTakeMyMoney className="h-[1.265rem] w-[1.265rem]" />,
+        icon: createElement(GiTakeMyMoney),
         href: "/dashboard/parent/money/fees",
       },
       {
         title: "Fines",
-        icon: <GrMoney className="h-[1.265rem] w-[1.265rem]" />,
+        icon: createElement(GrMoney),
         href: "/dashboard/parent/money/fines",
       },
     ],
   },
   {
     title: "Profile",
-    icon: <BiUserCircle className="h-[1.265rem] w-[1.265rem]" />,
+    icon: createElement(BiUserCircle),
+    href: "/dashboard/parent/Profile",
     subItems: [
       {
         title: "Personal Info",
-        icon: <PiUserListBold className="h-[1.265rem] w-[1.265rem]" />,
+        icon: createElement(PiUserListBold),
         href: "/dashboard/parent/profile/personal-info",
       },
       {
         title: "Settings",
-        icon: <RiSettings2Line className="h-[1.265rem] w-[1.265rem]" />,
+        icon: createElement(RiSettings2Line),
         href: "/dashboard/parent/profile/settings",
       },
     ],
   },
-];
-
-const ParentDrawer: FC = () => {
-  return <Drawer items={drawerItems} />;
-};
-
-export default ParentDrawer;
+] as const;

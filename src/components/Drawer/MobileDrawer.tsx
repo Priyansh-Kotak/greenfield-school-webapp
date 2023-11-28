@@ -9,8 +9,9 @@ import {
 } from "@lib/next-ui";
 import { default as Link, default as NextLink } from "next/link";
 
-import type { DrawerProps } from ".";
 import type { FC } from "react";
+import { cloneElement, } from "react";
+import type { DrawerProps } from ".";
 import useSelectedDrawerItem from "./useSelectedOption";
 
 const MobileDrawer: FC<DrawerProps> = ({ items }) => {
@@ -32,7 +33,9 @@ const MobileDrawer: FC<DrawerProps> = ({ items }) => {
             as={Link}
             size="sm"
           >
-            {item.icon}
+            {cloneElement(item.icon, {
+              className: "h-[1.265rem] w-[1.265rem]",
+            })}
           </Button>
         ))}
       {items
@@ -48,14 +51,16 @@ const MobileDrawer: FC<DrawerProps> = ({ items }) => {
                   selectedItem.title === item.title ? "primary" : "default"
                 }
               >
-                {item.icon}
+                {cloneElement(item.icon, {
+                  className: "h-[1.265rem] w-[1.265rem]",
+                })}
               </Button>
             </DropdownTrigger>
-            {"subItems" in item && (
+            {item.subItems && (
               <DropdownMenu
                 selectedKeys={
                   selectedItem.title === item.title
-                    ? [selectedSubItem!.title]
+                    ? [selectedSubItem?.title ?? ""]
                     : undefined
                 }
                 selectionMode={
@@ -69,7 +74,9 @@ const MobileDrawer: FC<DrawerProps> = ({ items }) => {
                     as={NextLink}
                     key={subItem.title}
                     href={subItem.href}
-                    startContent={subItem.icon}
+                    startContent={cloneElement(subItem.icon, {
+                      classNames: "h-[1.265rem] w-[1.265rem]",
+                    })}
                   >
                     {subItem.title}
                   </DropdownItem>

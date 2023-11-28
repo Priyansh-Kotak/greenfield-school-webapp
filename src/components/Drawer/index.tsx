@@ -1,6 +1,6 @@
 "use client";
 
-import type { FC, ReactNode } from "react";
+import type { FC, ReactElement } from "react";
 
 import DesktopDrawer from "./DesktopDrawer";
 import MobileDrawer from "./MobileDrawer";
@@ -8,18 +8,16 @@ import useResponsiveScreen from "@/src/hooks/useResponsiveScreen";
 
 export type SubDrawerItem = {
   title: string;
-  icon: ReactNode | JSX.Element;
+  icon: ReactElement;
   href: string;
 };
 
-export type DrawerItem =
-  | SubDrawerItem
-  | (Pick<SubDrawerItem, "icon" | "title"> & {
-      subItems: SubDrawerItem[];
-    });
+export type DrawerItem = SubDrawerItem & {
+  subItems?: ReadonlyArray<SubDrawerItem>;
+};
 
 export type DrawerProps = {
-  items: DrawerItem[];
+  items: ReadonlyArray<DrawerItem>;
 };
 
 const Drawer: FC<DrawerProps> = ({ items }) => {
