@@ -28,31 +28,37 @@ export default [
       {
         title: "Attendance",
         icon: createElement(FaUserClock),
+        desc: "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         href: "/dashboard/student/academics/attendance",
       },
       {
         title: "Timetable",
         icon: createElement(AiOutlineClockCircle),
+        desc: "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         href: "/dashboard/student/academics/timetable",
       },
       {
         title: "Class Material",
         icon: createElement(FiFolder),
+        desc: "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         href: "/dashboard/student/academics/class-material",
       },
       {
         title: "Academic Calendar",
         icon: createElement(BsCalendar2Check),
+        desc: "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         href: "/dashboard/student/academics/academic-calendar",
       },
       {
         title: "Home Work",
         icon: createElement(MdWorkOutline),
+        desc: "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         href: "/dashboard/student/academics/homework",
       },
       {
         title: "Teacher Info",
         icon: createElement(LiaChalkboardTeacherSolid),
+        desc: "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         href: "/dashboard/student/academics/teacher-info",
       },
     ],
@@ -65,16 +71,19 @@ export default [
       {
         title: "Schedule",
         icon: createElement(AiOutlineClockCircle),
+        desc: "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         href: "/dashboard/student/exams/schedule",
       },
       {
         title: "Marks",
         icon: createElement(GoNumber),
+        desc: "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         href: "/dashboard/student/exams/marks",
       },
       {
         title: "Report Card",
         icon: createElement(TbReportAnalytics),
+        desc: "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         href: "/dashboard/student/exams/report-card",
       },
     ],
@@ -87,12 +96,14 @@ export default [
       {
         title: "Fees",
         icon: createElement(GiTakeMyMoney),
+        desc: "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         href: "/dashboard/student/money/fees",
       },
       {
         title: "Fines",
         icon: createElement(GrMoney),
         href: "/dashboard/student/money/fines",
+        desc: "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       },
     ],
   },
@@ -104,11 +115,13 @@ export default [
       {
         title: "Personal Info",
         icon: createElement(PiUserListBold),
+        desc: "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         href: "/dashboard/student/profile/personal-info",
       },
       {
         title: "Settings",
         icon: createElement(RiSettings2Line),
+        desc: "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         href: "/dashboard/student/profile/settings",
       },
     ],
