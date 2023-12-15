@@ -49,3 +49,13 @@ export const toKebabCase = (str: string, separator?: string) => {
 export const toSentenceCase = (str: string, separator?: string) => {
   return str.replaceAll(separator ?? /\s/g, " ").toLowerCase();
 };
+
+/**
+ * Truncates a string to a specified length and adds ellipsis if necessary.
+ * @param str - The string to truncate.
+ * @param length - The maximum length of the truncated string.
+ * @returns The truncated string.
+ */
+export const truncateStr = (str: string, length: number) => {
+  return str.length > length ? `${str.substring(0, length)}...` : str;
+};
