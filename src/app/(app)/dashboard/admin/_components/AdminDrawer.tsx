@@ -1,11 +1,11 @@
 "use client";
 
-import { MdDateRange } from "react-icons/md";
-import { RiAdminLine } from "react-icons/ri";
 import { BiHome, BiUserCircle } from "react-icons/bi";
 import { FaMoneyCheckAlt, FaUserClock } from "react-icons/fa";
 import { LiaChalkboardTeacherSolid, LiaMoneyBillSolid } from "react-icons/lia";
+import { MdDateRange } from "react-icons/md";
 import { PiExamLight, PiUserListBold } from "react-icons/pi";
+import { RiAdminLine } from "react-icons/ri";
 import {
     TbLamp2,
     TbPigMoney,
@@ -138,6 +138,17 @@ const drawerItems: DrawerItem[] = [
                 title: "Academic Year",
                 icon: <MdDateRange />,
                 href: "/dashboard/admin/administration/academic-year",
+            },
+            {
+                title: "Teacher",
+
+                icon: <MdDateRange />,
+                href: "/dashboard/admin/administration/teacher",
+            },
+            {
+                title: "Class",
+                icon: <MdDateRange />,
+                href: "/dashboard/admin/administration/classes",
             },
         ],
     },

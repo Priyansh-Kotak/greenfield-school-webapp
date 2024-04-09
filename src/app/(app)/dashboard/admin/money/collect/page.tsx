@@ -1,5 +1,7 @@
 "use client";
 
+import Search_student from "./_components/Search_students";
+
 const page = () => {
     return (
         <div className=":w-full md:m-4 md:w-2/4">
@@ -8,6 +10,9 @@ const page = () => {
       </div> */}
             <div className="rounded-lg  font-bold   md:p-3">
                 <div>Payment Collection</div>
+            </div>
+            <div className="my-3 rounded-lg border border-black  md:w-full">
+                <Search_student />
             </div>
             <div className="my-3 rounded-lg border border-black  md:w-full"></div>
         </div>

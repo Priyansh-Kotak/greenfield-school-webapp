@@ -1,9 +1,20 @@
+
+
 "use client";
 
-import { useNavContext } from "../_contexts/NavContext";
+import { useContext } from "react";
+import { NavContext } from "../_contexts/NavContext";
 
 const LinkNavbar = () => {
-    const { activeLinkId } = useNavContext();
+    const contextValue = useContext(NavContext); 
+
+    if (!contextValue) {
+        throw new Error(
+            "NavProvider not found. Make sure it wraps your component tree.",
+        );
+    }
+
+    const { activeLinkId } = contextValue;
     const navlinks = ["Academics", "Exams", "Money", "Profile"];
 
     const renderNavLink = (content: string) => {
@@ -16,7 +27,7 @@ const LinkNavbar = () => {
         };
 
         return (
-            <ul>
+            <ul className="" key={content}>
                 <li>
                     <button
                         className={`${

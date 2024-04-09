@@ -1,6 +1,6 @@
 import { type User, type UserRole } from "@prisma/client";
 import { hashString } from "../auth";
-import { type UserRepository } from "../model/repository/user.repository";
+import { UserRepositoryImpl, type UserRepository } from "../model/repository/user.repository";
 import { UserValidator } from "../model/validator/user.validator";
 
 export interface UserService {
@@ -63,3 +63,7 @@ export class UserServiceImpl implements UserService {
         });
     }
 }
+
+
+// new UserServiceImpl(new UserRepositoryImpl () ).createNewUser({role: 'ADMIN',username: 'admin',password:'admin'});
+

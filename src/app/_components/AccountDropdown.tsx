@@ -9,9 +9,9 @@ import {
     User,
 } from "~/app/next-ui";
 
+import { type User as TUser } from "@prisma/client";
 import type { FC } from "react";
 import toast from "react-hot-toast";
-import { type User as TUser } from "@prisma/client";
 
 type Props = {
     user: Pick<TUser, "role" | "username">;
@@ -57,7 +57,7 @@ const AccountDropdown: FC<Props> = ({ user, logoutHandler }) => {
                 <DropdownItem
                     key="settings"
                     as={Link}
-                    href={`/dashboard/${user.role}`}
+                    href={`/dashboard/${user.role.toLowerCase()}`}
                 >
                     Dashboard
                 </DropdownItem>

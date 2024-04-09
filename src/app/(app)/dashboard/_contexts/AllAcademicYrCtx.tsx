@@ -2,6 +2,7 @@
 
 import { type AcademicYear } from "@prisma/client";
 import { type FC, type ReactNode, createContext, useContext } from "react";
+import Loading_page from "~/app/(app)/dashboard/loading";
 import { api } from "~/trpc/react";
 
 type AllAcademicYrCtx = { allAcademicYrs: AcademicYear[] } | null;
@@ -14,7 +15,7 @@ export const AllAcademicYrCtxProvider: FC<{ children: ReactNode }> = ({
     const { data, isError, isLoading, error } =
         api.academicYear.getAll.useQuery();
     if (isLoading) {
-        return <p>Loading...</p>;
+        return <p><Loading_page /></p>;
     }
     if (isError) {
         console.error(error);
