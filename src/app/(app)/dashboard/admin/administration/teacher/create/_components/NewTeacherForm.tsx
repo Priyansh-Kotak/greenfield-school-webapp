@@ -1,17 +1,19 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { type z } from "zod";
+import { useSelectedAcademicYrCtx } from "~/app/(app)/dashboard/_contexts/SelectedAcademicYrCtx";
 import { Button, Input } from "~/app/next-ui";
-import { AcademicYearValidator } from "~/server/model/validator/academic-year.validator";
+import { TeacherValidator } from "~/server/model/validator/teacher.validator";
 import { api } from "~/trpc/react";
 
-const NewFormSchema = AcademicYearValidator.getBaseSchema();
+const NewFormSchema = TeacherValidator.getNewTeacherSchema();
 type TNewFormSchema = z.infer<typeof NewFormSchema>;
 
-const NewAcademicYearForm = () => {
+const NewTeacherForm = () => {
+    const {selectedAcademicYr} = useSelectedAcademicYrCtx()
     const {
         register,
         setError,
@@ -22,20 +24,22 @@ const NewAcademicYearForm = () => {
         mode: "onBlur",
         resolver: zodResolver(NewFormSchema),
         reValidateMode: "onBlur",
+        defaultValues:{academicYearId: selectedAcademicYr.id}
     });
     const utils = api.useUtils();
     // const { mutate, isLoading } = api.academicYear.newAcademicYear.useMutation({
-    const { mutate, isLoading } = api.teacher.newTeacher
+    const { mutate, isLoading } = api.teacher.newTeacher.useMutation({
         async onSuccess() {
             toast.success("🎉 Teacher successfully created submitted 🎉");
             reset();
-            await utils.academicYear.getAll.invalidate();
+            await utils.teacher.getAll.invalidate();
         },
         onError(err) {
             console.error(err);
             setError("root.serverError", { message: err.message });
         },
     });
+    console.log(errors)
 
     return (
         <form
@@ -44,29 +48,42 @@ const NewAcademicYearForm = () => {
         >
             <div className="grid grid-cols-1 gap-x-4 gap-y-2 px-2 pb-4 text-xl md:grid-cols-2">
                 <Input
-                    type="date"
-                    label="Start Date of Class"
+                    type="text"
+                    label="Name of the teacher"
                     variant="underlined"
-                    isInvalid={errors.startDate !== undefined}
-                    errorMessage={errors.startDate?.message}
-                    placeholder="Choose Date"
+                    isInvalid={errors.name !== undefined}
+                    errorMessage={errors.name?.message}
+                    placeholder="Enter name"
                     size="lg"
                     color="primary"
                     isRequired
-                    {...register("startDate")}
+                    {...register("name")}
                 />
                 <Input
-                    type="date"
-                    label="End Date of Class"
+                    type="email"
+                    label="Email id of the teacher"
                     variant="underlined"
-                    isInvalid={errors.endDate !== undefined}
-                    errorMessage={errors.endDate?.message}
-                    placeholder="Choose Date"
+                    isInvalid={errors.email !== undefined}
+                    errorMessage={errors.email?.message}
+                    placeholder="Enter email"
                     size="lg"
                     color="primary"
                     isRequired
-                    {...register("endDate")}
+                    {...register("email")}
                 />
+                <Input
+                    type="text"
+                    label="Phone number teacher"
+                    variant="underlined"
+                    isInvalid={errors.phone !== undefined}
+                    errorMessage={errors.phone?.message}
+                    placeholder="Enter phone number"
+                    size="lg"
+                    color="primary"
+                    isRequired
+                    {...register("phone")}
+                />
+              
             </div>
             {errors?.root?.serverError && (
                 <div className="font-bolder border-2 border-danger-700 px-4 py-2 text-danger-600">
@@ -86,4 +103,4 @@ const NewAcademicYearForm = () => {
     );
 };
 
-export default NewAcademicYearForm;
+export default NewTeacherForm;

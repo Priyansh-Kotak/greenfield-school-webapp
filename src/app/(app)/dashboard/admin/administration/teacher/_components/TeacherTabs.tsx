@@ -27,7 +27,7 @@ const TABS = [
     },
 ] as const;
 
-const AcademicYearTabs: FC = () => {
+const TeacherTabs: FC = () => {
     const path = usePathname();
     const selectedKey =
         TABS.find(({ href }) => href === path)?.key ?? TABS[0].key;
@@ -48,4 +48,4 @@ const AcademicYearTabs: FC = () => {
     );
 };
 
-export default AcademicYearTabs;
+export default TeacherTabs;

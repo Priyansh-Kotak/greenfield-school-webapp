@@ -1,4 +1,4 @@
-import UpdateAcademicYearGrid from "./_components/UpdateAcademicYearGrid";
+    import UpdateAcademicYearGrid from "./_components/UpdateTeacher";
 
 const AcademicYearUpdatePage = async () => {
     return (

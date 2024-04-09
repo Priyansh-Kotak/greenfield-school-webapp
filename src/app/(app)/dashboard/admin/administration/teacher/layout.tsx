@@ -1,6 +1,6 @@
 import React, { type FC, type ReactNode } from "react";
 import H1 from "~/app/(app)/(marketing)/_components/H1";
-import AcademicYearTabs from "./_components/AcademicYearTabs";
+import AcademicYearTabs from "./_components/TeacherTabs";
 
 const AcademicYearLayout: FC<{ children: ReactNode }> = ({ children }) => {
     return (
