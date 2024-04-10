@@ -9,7 +9,7 @@ import Loading from "~/app/(app)/loading";
 import { api } from "~/trpc/react";
 import TeacherUpdateForm from "./TeacherUpdateForm";
 
-const UpdateAcademicYearGrid: FC = () => {
+const UpdateTeacherGrid: FC = () => {
     const params = useSearchParams();
     const { selectedAcademicYr } = useSelectedAcademicYrCtx();
     const { isLoading, isSuccess, isError, data, refetch } =
@@ -28,12 +28,26 @@ const UpdateAcademicYearGrid: FC = () => {
 
     return (
         <section className="space-y-4">
+            {isLoading && <p className="justify-center">Loading...</p>}
+
             {data && data.length > 0 ? (
                 <h3 className="text-xl font-semibold">
                     Click on the Teacher you want to update
                 </h3>
             ) : (
-                <h3 className="text-xl font-semibold">No data to update.</h3>
+                <div>
+                    <h3 className="text-xl font-semibold">
+                        No teacher to update.
+                    </h3>
+                    <Button
+                        as={Link}
+                        color="primary"
+                        className="my-2 text-lg font-semibold"
+                        href="/dashboard/admin/administration/teacher/create"
+                    >
+                        Create a new Teaacher.
+                    </Button>
+                </div>
             )}
             <ul className="flex gap-4">
                 {isLoading && (
@@ -55,7 +69,6 @@ const UpdateAcademicYearGrid: FC = () => {
                                 <span>{tr.email}</span>
                                 <span className="font-semibold">Phone: </span>
                                 <span>{tr.phone}</span>
-                                {/* <span className="font-semibold"></span>   */}
 
                                 <div className="col-span-2">
                                     <Button
@@ -83,4 +96,4 @@ const UpdateAcademicYearGrid: FC = () => {
     );
 };
 
-export default UpdateAcademicYearGrid;
+export default UpdateTeacherGrid;

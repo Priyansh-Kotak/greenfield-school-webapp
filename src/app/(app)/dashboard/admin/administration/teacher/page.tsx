@@ -5,8 +5,7 @@ import { api } from "~/trpc/react";
 import { useSelectedAcademicYrCtx } from "../../../_contexts/SelectedAcademicYrCtx";
 import Loading from "~/app/(app)/loading";
 
-const AcademicYearCRUDPage = () => {
-    // const { allAcademicYrs } = useAllAcademicYrCtx();
+const TeacherCRUDPage = () => {
     const { selectedAcademicYr } = useSelectedAcademicYrCtx();
     const { isLoading, isSuccess, isError, data, refetch } =
         api.teacher.getAll.useQuery({ academicYearId: selectedAcademicYr.id });
@@ -17,13 +16,26 @@ const AcademicYearCRUDPage = () => {
 
     return (
         <div className="space-y-4">
+            {isLoading && <p className="justify-center">Loading...</p>}
+
             {data && data.length > 0 ? (
                 <h3 className="text-xl font-semibold">
                     All teachers of the school in year{" "}
-                    {selectedAcademicYr.startDate.getUTCFullYear()}
                 </h3>
             ) : (
-                <h3 className="text-xl font-semibold">No data found.</h3>
+                <div>
+                    <h3 className="text-xl font-semibold">
+                        No teacher created.
+                    </h3>
+                    <Button
+                        as={Link}
+                        color="primary"
+                        className="my-2 text-lg font-semibold"
+                        href="/dashboard/admin/administration/teacher/create"
+                    >
+                        Create a new Teaacher.
+                    </Button>
+                </div>
             )}
             <div className="flex gap-4">
                 {/* Apply trpc loading state here */}
@@ -45,7 +57,6 @@ const AcademicYearCRUDPage = () => {
                                 <span>{tr.email}</span>
                                 <span className="font-semibold">Phone: </span>
                                 <span>{tr.phone}</span>
-                                {/* <span className="font-semibold"></span>   */}
 
                                 <div className="col-span-2">
                                     <Button
@@ -74,4 +85,4 @@ const AcademicYearCRUDPage = () => {
     );
 };
 
-export default AcademicYearCRUDPage;
+export default TeacherCRUDPage;

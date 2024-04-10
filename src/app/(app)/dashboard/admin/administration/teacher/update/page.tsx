@@ -1,4 +1,4 @@
-    import UpdateAcademicYearGrid from "./_components/UpdateTeacher";
+    import UpdateTeacher from "./_components/UpdateTeacher";
 
 const AcademicYearUpdatePage = async () => {
     return (
@@ -6,7 +6,7 @@ const AcademicYearUpdatePage = async () => {
             <h2 className="text-lg sm:text-[1.5rem]">
                 Update an Teacher
             </h2>
-            <UpdateAcademicYearGrid />
+            <UpdateTeacher />
         </div>
     );
 };

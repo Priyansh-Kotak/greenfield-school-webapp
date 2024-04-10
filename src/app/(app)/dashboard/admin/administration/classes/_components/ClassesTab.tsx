@@ -8,26 +8,26 @@ const TABS = [
     {
         title: "All Years",
         key: "all-years",
-        href: "/dashboard/admin/administration/academic-year",
+        href: "/dashboard/admin/administration/classes",
     },
     {
         title: "Create",
         key: "create",
-        href: "/dashboard/admin/administration/academic-year/create",
+        href: "/dashboard/admin/administration/classes/create",
     },
     {
         title: "Update",
         key: "update",
-        href: "/dashboard/admin/administration/academic-year/update",
+        href: "/dashboard/admin/administration/classes/update",
     },
     {
         title: "Delete",
         key: "delete",
-        href: "/dashboard/admin/administration/academic-year/delete",
+        href: "/dashboard/admin/administration/classes/delete",
     },
 ] as const;
 
-const AcademicYearTabs: FC = () => {
+const ClassesTab: FC = () => {
     const path = usePathname();
     const selectedKey =
         TABS.find(({ href }) => href === path)?.key ?? TABS[0].key;
@@ -48,4 +48,4 @@ const AcademicYearTabs: FC = () => {
     );
 };
 
-export default AcademicYearTabs;
+export default ClassesTab;

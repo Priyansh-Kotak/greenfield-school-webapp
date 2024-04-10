@@ -54,7 +54,7 @@ const TeacherUpdateForm: FC<{ teacher: Teacher }> = ({ teacher }) => {
                     control={control}
                     name="name"
                     render={({
-                        field: { ...rest },
+                        field: { value, ...rest },
                         fieldState: { error, invalid },
                     }) => {
                         return (
@@ -67,6 +67,10 @@ const TeacherUpdateForm: FC<{ teacher: Teacher }> = ({ teacher }) => {
                                 placeholder="Enter name id of the teacher"
                                 size="lg"
                                 color="primary"
+                                value={
+                                    // new Date(value).toISOString().split("T")[0]
+                                    value
+                                }
                                 isRequired
                                 {...rest}
                             />
@@ -78,7 +82,7 @@ const TeacherUpdateForm: FC<{ teacher: Teacher }> = ({ teacher }) => {
                     control={control}
                     name="email"
                     render={({
-                        field: { ...rest },
+                        field: { value, ...rest },
                         fieldState: { error, invalid },
                     }) => {
                         return (
@@ -91,6 +95,11 @@ const TeacherUpdateForm: FC<{ teacher: Teacher }> = ({ teacher }) => {
                                 placeholder="Enter email id of the teacher"
                                 size="lg"
                                 color="primary"
+                                value={
+                                    // new Date(value).toISOString().split("T")[0]
+                                    value
+                                }
+                                isRequired
                                 {...rest}
                             />
                         );
@@ -101,7 +110,7 @@ const TeacherUpdateForm: FC<{ teacher: Teacher }> = ({ teacher }) => {
                     control={control}
                     name="phone"
                     render={({
-                        field: { ...rest },
+                        field: { value, ...rest },
                         fieldState: { error, invalid },
                     }) => {
                         return (
@@ -114,7 +123,12 @@ const TeacherUpdateForm: FC<{ teacher: Teacher }> = ({ teacher }) => {
                                 placeholder="Enter phone number of the teacher"
                                 size="lg"
                                 color="primary"
-                                 {...rest}
+                                value={
+                                    // new Date(value).toISOString().split("T")[0]
+                                    value
+                                }
+                                isRequired
+                                {...rest}
                             />
                         );
                     }}

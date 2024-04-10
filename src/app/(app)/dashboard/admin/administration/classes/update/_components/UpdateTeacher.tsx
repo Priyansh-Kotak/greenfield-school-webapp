@@ -1,43 +1,53 @@
 "use client";
 
-import Loading from "~/app/(app)/loading";
-import { Button, Card, CardBody, CardHeader, Link } from "~/app/next-ui";
-import { api } from "~/trpc/react";
-import { useSelectedAcademicYrCtx } from "../../../_contexts/SelectedAcademicYrCtx";
+import { useSearchParams } from "next/navigation";
 
-const TeacherCRUDPage = () => {
-    // const { allAcademicYrs } = useAllAcademicYrCtx();
+import { Button, Card, CardBody, Link } from "@nextui-org/react";
+import { type FC } from "react";
+import { useSelectedAcademicYrCtx } from "~/app/(app)/dashboard/_contexts/SelectedAcademicYrCtx";
+import Loading from "~/app/(app)/loading";
+import { api } from "~/trpc/react";
+import TeacherUpdateForm from "./TeacherUpdateForm";
+
+const UpdateAcademicYearGrid: FC = () => {
+    const params = useSearchParams();
     const { selectedAcademicYr } = useSelectedAcademicYrCtx();
     const { isLoading, isSuccess, isError, data, refetch } =
         api.teacher.getAll.useQuery({ academicYearId: selectedAcademicYr.id });
-
+    // render academic year update form if correct id is provided
+    const teacherId = params.get("id");
+    if (teacherId && isSuccess) {
+        const teacher = data.find(tr => tr.id === teacherId);
+        if (teacher) {
+            return <TeacherUpdateForm teacher={teacher} />;
+        }
+    }
     const tryAgainClickHandler = async () => {
         await refetch();
     };
 
     return (
-        <div className="space-y-4">
+        <section className="space-y-4">
             {data && data.length > 0 ? (
                 <h3 className="text-xl font-semibold">
-                    All Classes of the school in year{" "}
-                    {selectedAcademicYr.startDate.getUTCFullYear()}
+                    Click on the Teacher you want to update
                 </h3>
             ) : (
-                <h3 className="text-xl font-semibold">No data found.</h3>
+                <h3 className="text-xl font-semibold">No data to update.</h3>
             )}
-            <div className="flex gap-4">
-                {/* Apply trpc loading state here */}
+            <ul className="flex gap-4">
                 {isLoading && (
                     <p className="justify-center">
                         <Loading />
                     </p>
                 )}
                 {isSuccess &&
-                    data.map((tr, i) => (
-                        <Card key={tr.id}>
-                            <CardHeader className="text-lg font-semibold">
-                                Teacher #{i + 1}
-                            </CardHeader>
+                    data.map(tr => (
+                        <Card
+                            key={tr.id}
+                            as={Link}
+                            href={`/dashboard/admin/administration/teacher/update?id=${tr.id}`}
+                        >
                             <CardBody className="grid grid-cols-2 gap-x-2 gap-y-1">
                                 <span className="font-semibold">Name: </span>
                                 <span>{tr.name}</span>
@@ -60,7 +70,6 @@ const TeacherCRUDPage = () => {
                             </CardBody>
                         </Card>
                     ))}
-
                 {isError && (
                     <div>
                         <p>Oops, could not load Teacher</p>
@@ -69,9 +78,9 @@ const TeacherCRUDPage = () => {
                         </Button>
                     </div>
                 )}
-            </div>
-        </div>
+            </ul>
+        </section>
     );
 };
 
-export default TeacherCRUDPage;
+export default UpdateAcademicYearGrid;

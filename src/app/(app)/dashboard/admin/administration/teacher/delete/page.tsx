@@ -1,8 +1,10 @@
 "use client";
 import { type Teacher } from "@prisma/client";
+import Link from "next/link";
 import { type FC, useState } from "react";
 import { toast } from "react-hot-toast";
 import { useSelectedAcademicYrCtx } from "~/app/(app)/dashboard/_contexts/SelectedAcademicYrCtx";
+import Loading from "~/app/(app)/loading";
 import {
     Button,
     Card,
@@ -17,7 +19,6 @@ import {
 } from "~/app/next-ui";
 import { api } from "~/trpc/react";
 import { getAcademicStr } from "../utils";
-import Loading from "~/app/(app)/loading";
 
 const TeacherDeletePage: FC = () => {
     const utils = api.useUtils();
@@ -36,12 +37,10 @@ const TeacherDeletePage: FC = () => {
         null,
     );
     const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
-    const { data, isSuccess, isError, isLoading, refetch } = api.teacher.getAll.useQuery(
-        {
+    const { data, isSuccess, isError, isLoading, refetch } =
+        api.teacher.getAll.useQuery({
             academicYearId: selectedAcademicYr.id,
-        },
-    );
-    console.log(data);
+        });
 
     const deleteClickHandler = (tr: Teacher) => {
         return () => {
@@ -65,11 +64,23 @@ const TeacherDeletePage: FC = () => {
 
     return (
         <div className="space-y-4">
+            {isLoading && <p className="justify-center">Loading...</p>}
             {data && data?.length > 0 ? (
                 <h3 className="text-xl font-semibold">Delete Teacher</h3>
             ) : (
-                <h3 className="text-xl font-semibold">No data to delete. </h3>
-            )}
+                <div>
+                    <h3 className="text-xl font-semibold">
+                        No teacher data to delete.
+                    </h3>
+                    <Button
+                        as={Link}
+                        color="primary"
+                        className="my-2 text-lg font-semibold"
+                        href="/dashboard/admin/administration/teacher/create"
+                    >
+                        Create a new Teaacher.
+                    </Button>
+                </div>            )}
             <div className="flex gap-4">
                 <Modal
                     isOpen={isOpen}
@@ -81,8 +92,8 @@ const TeacherDeletePage: FC = () => {
                         {onClose => (
                             <>
                                 <ModalHeader className="flex flex-col gap-1">
-                                    Are you sure that you want to delete Teacher{" "}
-                                    {getAcademicStr(selectedAcademicYr)}?
+                                    Are you sure that you want to delete Teacher
+                                    &quot;{selectedTeacher?.name}&quot;
                                 </ModalHeader>
                                 <ModalBody>
                                     <p className="text-rose-500">
@@ -106,7 +117,7 @@ const TeacherDeletePage: FC = () => {
                         )}
                     </ModalContent>
                 </Modal>
-                {isLoading && <p className="justify-center"><Loading /></p>}
+
                 {isSuccess &&
                     data?.map((tr, i) => (
                         <Card key={tr.id}>
@@ -115,11 +126,11 @@ const TeacherDeletePage: FC = () => {
                             </CardHeader>
                             <CardBody className="grid grid-cols-2 gap-x-2 gap-y-1">
                                 <span className="font-semibold">Name: </span>
-                                <span>{data?.[i]?.name}</span>
+                                <span>{tr.name}</span>
                                 <span className="font-semibold">Email: </span>
-                                <span>{data?.[i]?.email}</span>
+                                <span>{tr.email}</span>
                                 <span className="font-semibold">Phone: </span>
-                                <span>{data?.[i]?.phone}</span>
+                                <span>{tr.phone}</span>
                                 <div className="col-span-2">
                                     <Button
                                         color="danger"

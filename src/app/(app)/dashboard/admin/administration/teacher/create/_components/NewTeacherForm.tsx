@@ -13,7 +13,7 @@ const NewFormSchema = TeacherValidator.getNewTeacherSchema();
 type TNewFormSchema = z.infer<typeof NewFormSchema>;
 
 const NewTeacherForm = () => {
-    const {selectedAcademicYr} = useSelectedAcademicYrCtx()
+    const { selectedAcademicYr } = useSelectedAcademicYrCtx();
     const {
         register,
         setError,
@@ -24,7 +24,7 @@ const NewTeacherForm = () => {
         mode: "onBlur",
         resolver: zodResolver(NewFormSchema),
         reValidateMode: "onBlur",
-        defaultValues:{academicYearId: selectedAcademicYr.id}
+        defaultValues: { academicYearId: selectedAcademicYr.id },
     });
     const utils = api.useUtils();
     // const { mutate, isLoading } = api.academicYear.newAcademicYear.useMutation({
@@ -39,7 +39,6 @@ const NewTeacherForm = () => {
             setError("root.serverError", { message: err.message });
         },
     });
-    console.log(errors)
 
     return (
         <form
@@ -73,7 +72,7 @@ const NewTeacherForm = () => {
                 />
                 <Input
                     type="text"
-                    label="Phone number teacher"
+                    label="Phone number of the teacher"
                     variant="underlined"
                     isInvalid={errors.phone !== undefined}
                     errorMessage={errors.phone?.message}
@@ -83,7 +82,6 @@ const NewTeacherForm = () => {
                     isRequired
                     {...register("phone")}
                 />
-              
             </div>
             {errors?.root?.serverError && (
                 <div className="font-bolder border-2 border-danger-700 px-4 py-2 text-danger-600">
